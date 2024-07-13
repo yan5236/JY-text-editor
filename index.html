@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>jy文本编辑器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="editor-container">
+    <h1 contenteditable="true">在此输入标题</h1>
+    <button onclick="saveText()">保存</button>
+    <button onclick="clearText()">清空</button>
+    <button onclick="copyText()">复制文本</button>
+    <textarea id="text-editor" rows="20" placeholder="开始编写您的文本..."></textarea>
+    <button onclick="exportText()">导出txt</button>
+</div>
+<div>
+    <p>文本行数：<span id="line-count">0</span></p>
+    <a href="https://blog.nanhaiblog.top/">作者网站</a>
+</div>
+
+<footer>
+    <p class="copyright">&copy; 2024 - <!-- 当前年份 --> 年 jy文本编辑器. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
