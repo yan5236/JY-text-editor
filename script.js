@@ -2,6 +2,23 @@ document.getElementById('text-editor').addEventListener('input', function() {
     updateLineCount();
 });
 
+// 页面加载时恢复标题和文本内容
+window.onload = function() {
+    var textArea = document.getElementById('text-editor');
+    var titleElement = document.querySelector('h1[contenteditable]');
+    var savedTitle = localStorage.getItem('textEditorTitle');
+    var savedContent = localStorage.getItem('textEditorContent');
+    
+    if (savedTitle) {
+        titleElement.innerText = savedTitle; // 恢复标题
+    }
+    if (savedContent) {
+        textArea.value = savedContent; // 恢复文本内容
+        updateLineCount(); // 更新行数显示
+    }
+};
+
+
 function updateLineCount() {
     var textArea = document.getElementById('text-editor');
     var lines = textArea.value.split('\n').length;
@@ -35,21 +52,19 @@ window.onload = function() {
     }
 };
 
+
 function saveText() {
     var textArea = document.getElementById('text-editor');
     var titleElement = document.querySelector('h1[contenteditable]');
-    var filename = titleElement.innerText.trim().replace(/ /g, '_') + '.txt'; // 文件名替换空格为下划线，并加上.txt后缀
     var content = textArea.value;
 
+    // 保存标题到localStorage
+    localStorage.setItem('textEditorTitle', titleElement.innerText.trim());
     // 保存文本内容到localStorage
     localStorage.setItem('textEditorContent', content);
-    
-    // 新增：保存标题到localStorage
-    localStorage.setItem('textEditorTitle', titleElement.innerText.trim());
 
-    alert('内容已保存，包括标题！');
+    alert('标题和内容已保存！');
 }
-
 // ... 原有的updateLineCount, copyText, 和 clearText函数不变 ...
 
 function exportText() {
