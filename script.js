@@ -37,8 +37,17 @@ window.onload = function() {
 
 function saveText() {
     var textArea = document.getElementById('text-editor');
-    localStorage.setItem('textEditorContent', textArea.value); // 保存内容到localStorage
-    alert('内容已保存！');
+    var titleElement = document.querySelector('h1[contenteditable]');
+    var filename = titleElement.innerText.trim().replace(/ /g, '_') + '.txt'; // 文件名替换空格为下划线，并加上.txt后缀
+    var content = textArea.value;
+
+    // 保存文本内容到localStorage
+    localStorage.setItem('textEditorContent', content);
+    
+    // 新增：保存标题到localStorage
+    localStorage.setItem('textEditorTitle', titleElement.innerText.trim());
+
+    alert('内容已保存，包括标题！');
 }
 
 // ... 原有的updateLineCount, copyText, 和 clearText函数不变 ...
